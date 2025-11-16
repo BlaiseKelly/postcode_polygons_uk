@@ -4,6 +4,7 @@ library(raster)
 library(tmap)
 library(dplyr)
 
+# boundary polygons from https://osdatahub.os.uk/downloads/open/BoundaryLine (or use other shape file)
 ## import UK polygons
 GB_counties <- st_read("dat/bdline_gpkg_gb/Data/bdline_gb.gpkg") |> 
   mutate(area = as.numeric(st_area(geometry))) |> 
@@ -11,6 +12,7 @@ GB_counties <- st_read("dat/bdline_gpkg_gb/Data/bdline_gb.gpkg") |>
 
 GB_all <- st_union(GB_counties)
 
+#Download the centroids as a gpkg file from https://osdatahub.os.uk/downloads/open/CodePointOpen
 GB_postcodes <- st_read("dat/codepo_gpkg_gb/Data/codepo_gb.gpkg")
 
 # pick a county
