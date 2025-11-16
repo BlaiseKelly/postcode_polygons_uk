@@ -46,7 +46,7 @@ tm2 <- tm_shape(bg_m)+
   tm_shape(cty_pc)+
   tm_dots(size = 0.1)+
   tm_layout(frame = FALSE)+
-  tm_title(text = paste0(cty$Name, "\npostcode centroids\nand generated Voroni cells"),position = c(0.01,0.96),size = 1)
+  tm_title(text = paste0(cty$Name, "\npostcode centroids\nand generated Voronoi cells"),position = c(0.01,0.96),size = 1)
 
 # save plot
 tmap_save(tm2, "voroni.png")
