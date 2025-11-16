@@ -10,8 +10,6 @@ GB_counties <- st_read("dat/bdline_gpkg_gb/Data/bdline_gb.gpkg") |>
   mutate(area = as.numeric(st_area(geometry))) |> 
   arrange(area)
 
-GB_all <- st_union(GB_counties)
-
 #Download the centroids as a gpkg file from https://osdatahub.os.uk/downloads/open/CodePointOpen
 GB_postcodes <- st_read("dat/codepo_gpkg_gb/Data/codepo_gb.gpkg")
 
@@ -35,8 +33,10 @@ pc_vor <- st_cast(p1, "MULTIPOLYGON") |>
 
 # get basemap
 bg <- basemaps::basemap_raster(cty, map_res = 0.99, map_service = "carto", map_type = "light")
+# looks better if masked
 bg_m <- mask(bg, st_transform(cty,3857))
 
+# create tmap plot
 tm2 <- tm_shape(bg_m)+
   tm_rgb()+
   tm_shape(cty) +
